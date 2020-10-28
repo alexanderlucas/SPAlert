@@ -68,6 +68,24 @@ open class SPAlertView: UIView {
     public var layout = SPAlertLayout()
     
     /**
+     Font for the title label.
+     */
+    public var titleFont: UIFont = UIFont.boldSystemFont(ofSize: 22) {
+        didSet {
+            self.titleLabel?.font = titleFont
+        }
+    }
+    
+    /**
+     Font for the message label.
+     */
+    public var messageFont: UIFont = UIFont.systemFont(ofSize: 16) {
+        didSet {
+            self.subtitleLabel?.font = messageFont
+        }
+    }
+    
+    /**
      View on which present alert.
      */
     public var keyWindow: UIView = (UIApplication.shared.keyWindow ?? UIWindow())
