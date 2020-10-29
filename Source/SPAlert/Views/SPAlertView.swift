@@ -158,11 +158,6 @@ open class SPAlertView: UIView {
         backgroundView.isUserInteractionEnabled = false
         addSubview(backgroundView)
         
-        if dismissByTap {
-            let tapGesterRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismiss))
-            addGestureRecognizer(tapGesterRecognizer)
-        }
-        
         if let iconView = iconView {
             addSubview(iconView)
         }
@@ -207,6 +202,11 @@ open class SPAlertView: UIView {
         layoutSubviews()
         alpha = 0
         transform = transform.scaledBy(x: 0.8, y: 0.8)
+        
+        if dismissByTap {
+            let tapGesterRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismiss))
+            addGestureRecognizer(tapGesterRecognizer)
+        }
         
         UIView.animate(withDuration: 0.2, animations: {
             self.alpha = 1
