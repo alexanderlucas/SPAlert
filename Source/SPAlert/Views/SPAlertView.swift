@@ -48,9 +48,9 @@ open class SPAlertView: UIView {
     private var backgroundView: UIVisualEffectView!
     
     /**
-     Duration time when alert visible.
+     Duration time when alert visible. If nil, not dismiss until `dismiss` method is called.
      */
-    public var duration: TimeInterval = 1.5
+    public var duration: TimeInterval? = 1.5
     
     /**
      Allow dismiss by tap on alert. By default it allowed.
@@ -215,7 +215,9 @@ open class SPAlertView: UIView {
             if let iconView = self.iconView as? SPAlertIconAnimatable {
                 iconView.animate()
             }
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + self.duration) {
+            guard let duration = self.duration else { return }
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + duration) {
                 self.dismiss()
             }
         })
